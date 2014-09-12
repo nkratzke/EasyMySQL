@@ -1,8 +1,11 @@
-# EasyMySql #
-## A docker container to provide MySQL databases on the fly ##
+# EasyMySQL #
 
-Docker is an open-source engine that automates the deployment of applications
-as portable and self-sufficient containers that will run virtually anywhere.
+[docker]: https://dev.mysql.com/downloads/workbench/
+
+__A docker container to provide MySQL databases on the fly.__
+
+[Docker](docker) is an open-source engine that automates the deployment of applications
+as portable and self-contained containers that will run virtually anywhere.
 Dockerized applications reduce configuration efforts and obstacles
 for administrators. Applications (e.g. databases) can be provided in a configured,
 self-contained and frictionless way.
@@ -29,7 +32,7 @@ __Warning: You should not use this container for production purposes.__
 
 ## Prerequisites ##
 
-First, you have to install [Docker](http://www.docker.com).
+First, you have to install [Docker](docker).
 
 If you are using Linux, you are fine. Docker installation on Linux is less
 complicated than for other operating systems. Docker is a
@@ -153,8 +156,8 @@ And of course you can combine own database and user.
 
 You can change the access rights of your database.
 
-- read (which is mapped to GRANT SELECT on all databases) [DEFAULT]
-- write (GRANT ALL PRIVILEGES WITH OPTIONS on all databases, so this is power user is able to do everything)
+- <code>READ</code> (which is mapped to GRANT SELECT on all databases) __[DEFAULT]__
+- <code>WRITE</code> (GRANT ALL PRIVILEGES WITH OPTIONS on all databases, so this is power user is able to do everything)
 
 Be aware! If you are granting write access to the user, the user be able to do everything
 with the database including
