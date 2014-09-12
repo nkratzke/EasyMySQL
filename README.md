@@ -23,13 +23,13 @@ Whenever you have to
 - for demonstrational purposes (throw-away database)
 - in an ad hoc way
 
-this container might be solve your problem.
+this container might be of interest to you.
 
 __Warning: You should not use this container for production purposes.__
 
 ## Prerequisites ##
 
-You have to install [Docker](http://www.docker.com).
+First, you have to install [Docker](http://www.docker.com).
 
 If you are using Linux, you are fine. Docker installation on Linux is less
 complicated than for other operating systems. Docker is a
@@ -57,7 +57,7 @@ behind the scenes for you (which is my preferred way in case of github provided
   Dockerfiles):
 
 ```Shell
-docker build -t mysqldb github.com/nkratzke/mysqldb
+docker build -t mysqldb github.com/nkratzke/easymysl
 ```
 
 Now you have an image named *mysqldb* on your system, capable to
@@ -85,24 +85,63 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 85fbad3eb5ce        mysqldb:latest      "/usr/local/bin/star   56 minutes ago      Up 55 minutes       0.0.0.0:3306->3306/tcp   focused_lalande
 ```
 
-To stop a container simply figure out its CONTAINER ID and stop it like that
+To check whether the database ist working you can connect to it.
+Figure out what address your docker host has. If you are working with Boot2Docker
+you con do this
+
+```Shell
+boot2docker ip
+```
+
+and you will get an answer like that:
+
+```Shell
+The VM's Host only interface IP address is: 192.168.59.104
+```
+
+Now you have all to connect to your MySQL database. To check that it is working
+you could start [MySQLWorkbench](https://dev.mysql.com/downloads/workbench/) and
+enter the following parameters when creating a new database connection:
+
+- Hostname: IP address or DNS name of your docker host (when you are working with boot2docker its the ip you get via <code>boot2docker ip</code>)
+- Username: *student* (you can change this, we will come to this later)
+- Password: *secret* (you can change this, we will come to this later)
+- - Default Schema: *LVBsp* (you can change the database as well, we will come to this later)
+
+To stop a container simply figure out its CONTAINER ID (via <code>docker ps</code> as shown above)
+and stop it like that:
 
 ```Shell
 docker stop 85fbad3eb5ce
 ```
 
-Nevertheless the container is capable to do more.
+The above mentioned standard database is a read only default database. Not very helpful
+(except for me and my lectures).
+But the container is capable to do more by providing a set of parameters.
 
-### Use own database(s) ###
+- <code>user</code> and <code>password</code> to define your own user
+- <code>right</code> to define whether you want to provide just read or full access rights
+- <code>url</code> to provide a arbitrary sql file to deliver your own database
+
+So let's figure out some details.
+
+### Use your own database(s) with <code>url</code>###
+
+You can provide your own database via a sql file when you start your container.
+Just use the <code>url</code> parameter to point to a valid sql file.
+This file can be hosted anywhere (accessible from your docker host).
+
+__Attention!__ SQL file is assumed to be encoded as UTF8 and has to valid as well as non interactively processable by mysql.
 
 ```Shell
 docker run -d -p 3306:3306 -e url="http://www.example.org/my/database.sql" mysqldb
 ```
 
-### Define user ###
+### Define user with <code>user</code> and <code>password</code>###
 
-You can create your own user with own password at container startup.
-The created MySQL user will get read access to all databases hosted in this container.
+You can create your own user with own password by using the <code>user</code> and
+<code>password</code> parameter.
+By default the created MySQL user will get read access to all databases hosted in this container.
 
 ```Shell
 docker run -d -p 3306:3306 -e user="Nane" -e password="meins" mysqldb
@@ -110,7 +149,7 @@ docker run -d -p 3306:3306 -e user="Nane" -e password="meins" mysqldb
 
 And of course you can combine own database and user.
 
-### Access rights ###
+### Change access rights with <code>right</code>###
 
 You can change the access rights of your database.
 
