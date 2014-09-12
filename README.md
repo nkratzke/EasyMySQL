@@ -51,7 +51,7 @@ for
 
 ## Usage ##
 
-Start Boot2Docker according to your operating system. You can skip this step if
+Start Boot2Docker according to your operating system. You can skip this step, if
 you are working on a Linux system.
 
 First you have to build a image. This image provides a self-contained MySQL
@@ -60,11 +60,11 @@ behind the scenes for you (which is my preferred way in case of github provided
   Dockerfiles):
 
 ```Shell
-docker build -t mysqldb github.com/nkratzke/easymysl
+docker build -t mysqldb github.com/nkratzke/easymysql
 ```
 
 Now you have an image named *mysqldb* on your system, capable to
-provide MySQL databases. The simplest way to do this is, is like that:
+provide MySQL databases. The simplest way to do start a database is like that:
 
 ```Shell
 docker run -d -p 3306:3306 mysqldb
@@ -88,7 +88,7 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 85fbad3eb5ce        mysqldb:latest      "/usr/local/bin/star   56 minutes ago      Up 55 minutes       0.0.0.0:3306->3306/tcp   focused_lalande
 ```
 
-To check whether the database ist working you can connect to it.
+To check whether the database is working, you can connect to it.
 Figure out what address your docker host has. If you are working with Boot2Docker
 you con do this
 
@@ -150,14 +150,15 @@ By default the created MySQL user will get read access to all databases hosted i
 docker run -d -p 3306:3306 -e user="Nane" -e password="meins" mysqldb
 ```
 
-And of course you can combine own database and user.
-
 ### Change access rights with <code>right</code>###
 
 You can change the access rights of your database.
 
 - <code>READ</code> (which is mapped to GRANT SELECT on all databases) __[DEFAULT]__
 - <code>WRITE</code> (GRANT ALL PRIVILEGES WITH OPTIONS on all databases, so this is power user is able to do everything)
+
+__Hint! Access rights have to be written completely in uppercase.
+So <code>Write</code> is not recognized as <code>WRITE</code>!!!__
 
 Be aware! If you are granting write access to the user, the user be able to do everything
 with the database including
@@ -182,31 +183,29 @@ is synonym to
 docker run -d -p 3306:3306 mysqldb
 ```
 
-Read access is perfect for providing datasets. E.g. databases for students
-they should use to answer questions. It is assured that no student can
-destroy the database accidentally.
+Read access is perfect for providing read-only datasets. E.g. databases for students
+they should use to answer questions. By providing the database read-only
+it is assured that no student can destroy the database accidentally.
 
 If you want to create a user with complete write access to your database
-you can run
+you can run something like that
 
 ```Shell
-docker run -d -p 3306:3306 -e user="Nane" -e password="meins" -e right="WRITE" mysqldb
+docker run -d -p 3306:3306 -e user="Me" -e password="mine" -e right="WRITE" mysqldb
 ```
 
-which will provide full access to the database for user *Nane*.
+which will provide __full access__ to the database for user *Me*.
 
-Write access is perfect to provide databases which can be administered by the
-user. E.g. for students who have to set up a data models from scratch but should not
-have to deal with nitty critty MySQL installation and configuration. Nevertheless
+Write access is perfect to provide databases, which can be administered by the
+user. E.g. for students who have to set up a data model from scratch but should not
+have to deal with nitty critty MySQL server installation and configuration. Nevertheless
 they have to be aware that the user can do arbitrary harm to the database.
 So normally a user with write access should create users with a more restrictive
 set of rights for the database. But this is up to the user.
 
-And of course you can combine own database, user and access rights.
-
 ### Tips for troubleshooting ###
 
-If you want to provide your own databases you must assure that your database definition
+If you want to provide your own databases, you must assure that your database definition
 file provided via the <code>url</code> parameter is valid and processable by MySQL.
 
 If it works in MySQL Workbench it should work with this container.
