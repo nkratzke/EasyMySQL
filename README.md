@@ -74,8 +74,15 @@ It will create a running container on your system providing a MySQL server on po
 
 - Container will provide a standard database (I use for demonstration purposes in some of my lectures).
 - MySQL server has a user called *student* with a password called *secret*
+- The database is reachable on port 3306 (standard MySQL Port)
 
-You can figure out that the container is running
+If you want to run your database on a different port than 3306 just do the following:
+
+```Shell
+docker run -d -p 4407:3306 mysqldb
+```
+
+to run it on port 4407 (for instance). You can figure out that the container is running
 
 ```Shell
 docker ps
@@ -106,10 +113,10 @@ Now you have all to connect to your MySQL database. To check that it is working
 you could start [MySQLWorkbench](https://dev.mysql.com/downloads/workbench/) and
 enter the following parameters when creating a new database connection:
 
-- Hostname: IP address or DNS name of your docker host (when you are working with boot2docker its the ip you get via <code>boot2docker ip</code>)
-- Username: *student* (you can change this, we will come to this later)
-- Password: *secret* (you can change this, we will come to this later)
-- - Default Schema: *LVBsp* (you can change the database as well, we will come to this later)
+- __Hostname:__ IP address or DNS name of your docker host (when you are working with boot2docker its the ip you get via <code>boot2docker ip</code>)
+- __Username:__ *student* (you can change this, we will come to this later)
+- __Password:__ *secret* (you can change this, we will come to this later)
+- __Default Schema:__ *LVBsp* (you can change the database as well, we will come to this later)
 
 To stop a container simply figure out its CONTAINER ID (via <code>docker ps</code> as shown above)
 and stop it like that:
@@ -144,7 +151,7 @@ docker run -d -p 3306:3306 -e url="http://www.example.org/my/database.sql" mysql
 
 You can create your own user with own password by using the <code>user</code> and
 <code>password</code> parameter.
-By default the created MySQL user will get read access to all databases hosted in this container.
+By default the created MySQL user will get read access to all databases hosted by this container.
 
 ```Shell
 docker run -d -p 3306:3306 -e user="Nane" -e password="meins" mysqldb
@@ -215,5 +222,5 @@ with the <code>-t</code> parameter of docker. This will forward the output of th
 to your console, which is likely to be helpful for debugging purposes.
 
 ```Shell
-docker run -t -p 3306:3306 -e urldb="http://www.ex.org/my/database.sql" mysqldb
+docker run -t -p 3306:3306 -e url="http://www.ex.org/my/database.sql" mysqldb
 ```
