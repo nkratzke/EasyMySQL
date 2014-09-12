@@ -70,7 +70,7 @@ provide MySQL databases. The simplest way to do start a database is like that:
 docker run -d -p 3306:3306 mysqldb
 ```
 
-It will create a running container on your system providing a MySQL server on port 3306.
+It will create a running container on your system providing a MySQL server.
 
 - Container will provide a standard database (I use for demonstration purposes in some of my lectures).
 - MySQL server has a user called *student* with a password called *secret*
@@ -131,7 +131,7 @@ But the container is capable to do more by providing a set of parameters.
 
 - <code>user</code> and <code>password</code> to define your own user
 - <code>right</code> to define whether you want to provide just read or full access rights
-- <code>url</code> to provide a arbitrary sql file to deliver your own database
+- <code>url</code> to provide an arbitrary sql file (UTF8 encoded) to deliver your own database
 
 So let's figure out some details.
 
