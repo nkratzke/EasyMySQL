@@ -109,8 +109,8 @@ and you will get an answer like that:
 The VM's Host only interface IP address is: 192.168.59.104
 ```
 
-Now you have all to connect to your MySQL database. To check that it is working
-you could start [MySQLWorkbench](https://dev.mysql.com/downloads/workbench/) and
+Now you have all to connect to your MySQL database. To check that everything is fine
+just start [MySQLWorkbench](https://dev.mysql.com/downloads/workbench/) and
 enter the following parameters when creating a new database connection:
 
 - __Hostname:__ IP address or DNS name of your docker host (when you are working with boot2docker its the ip you get via <code>boot2docker ip</code>)
