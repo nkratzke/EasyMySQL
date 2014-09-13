@@ -26,12 +26,7 @@ __Warning: You should not use this container for production purposes.__
 
 First, you have to install [Docker](docker).
 
-If you are using Linux, you are fine. Docker installation on Linux is less
-complicated than for other operating systems. Docker is a
-operating system virtualization tool chain for Linux. Therefore installation
-gets only complicated if you are leaving the Linux ecosystem.
-
-You will find Docker installation instructions
+If you are using Linux, you are fine. You will find Docker installation instructions
 for a lot of Linux distributions [here](http://docs.docker.com/installation/).
 
 But no worries. If you are using __Windows__ (why ever) or __Mac OS X__ (like me) simply
@@ -43,10 +38,7 @@ for
 
 ## Usage ##
 
-Start Boot2Docker according to your operating system. You can skip this step, if
-you are working on a Linux system.
-
-First you have to build a image. This image provides a self-contained MySQL
+To use this container you have to build an image first. This image provides a self-contained MySQL
 server. You can clone this repository or tell docker to do the repository handling
 behind the scenes for you (which is my preferred way in case of github provided
   Dockerfiles):
