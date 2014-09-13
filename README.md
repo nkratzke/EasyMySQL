@@ -146,12 +146,12 @@ docker run -d -p 3306:3306 -e user="Nane" -e password="meins" mysqldb
 You can change the access rights of your database.
 
 - <code>READ</code> (which is mapped to GRANT SELECT on all databases) __[DEFAULT]__
-- <code>WRITE</code> (GRANT ALL PRIVILEGES WITH OPTIONS on all databases, so this is power user is able to do everything)
+- <code>WRITE</code> (GRANT ALL PRIVILEGES WITH OPTIONS on all databases, so this is a power user beeing able to do everything)
 
 __Hint! Access rights have to be written completely in uppercase.
 So <code>Write</code> is not recognized as <code>WRITE</code>!!!__
 
-Be aware! If you are granting write access to the user, the user be able to do everything
+Be aware! If you are granting write access to the user, the user is able to do everything
 with the database including
 
 - create new databases
