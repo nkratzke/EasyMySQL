@@ -4,18 +4,10 @@
 
 __A docker container to provide MySQL databases on the fly.__
 
-[Docker](docker) is an open-source engine that automates the deployment of applications
-as portable and self-contained containers that will run virtually anywhere.
-Dockerized applications reduce configuration efforts and obstacles
-for administrators. Applications (e.g. databases) can be provided in a configured,
-self-contained and frictionless way.
-
-## Intended usage ##
-
 This Dockerfile is used to provide MySQL databases in a frictionless
 but flexible way. The requirement was to provide different
 MySQL based relational databases for computer science students
-for educational purposes (database/webtechnology lectures).
+for educational purposes (database/webtechnology lectures and labs).
 Nevertheless, the approach can be used
 for similar purposes in complete different domains.
 
@@ -97,7 +89,7 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 
 To check whether the database is working, you can connect to it.
 Figure out what address your docker host has. If you are working with Boot2Docker
-you con do this
+you can do this
 
 ```Shell
 boot2docker ip
@@ -191,7 +183,7 @@ docker run -d -p 3306:3306 mysqldb
 ```
 
 Read access is perfect for providing read-only datasets. E.g. databases for students
-they should use to answer questions. By providing the database read-only
+they should use to answer questions. By providing a database read-only
 it is assured that no student can destroy the database accidentally.
 
 If you want to create a user with complete write access to your database
@@ -213,9 +205,10 @@ set of rights for the database. But this is up to the user.
 ### Tips for troubleshooting ###
 
 If you want to provide your own databases, you must assure that your database definition
-file provided via the <code>url</code> parameter is valid and processable by MySQL.
+file provided via the <code>url</code> parameter is valid and processable by MySQL as well as 
+downloadable by curl (which is used behind the scenes to do that).
 
-If it works in MySQL Workbench it should work with this container.
+If it works in MySQL Workbench, it should work with this container.
 
 Nevertheless, if your are running into troubles you should start your container
 with the <code>-t</code> parameter of docker. This will forward the output of the container
