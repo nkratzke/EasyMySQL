@@ -10,6 +10,7 @@ file -bi /var/mysql/database.sql
 sleep 5
 curl $url | mysql --default-character-set=utf8
 mysqladmin shutdown
+echo "finished"
 
 # Now the provided user credentials are added
 /usr/sbin/mysqld &
@@ -18,8 +19,10 @@ echo "Creating user"
 echo "CREATE USER '$user' IDENTIFIED BY '$password'" | mysql --default-character-set=utf8
 echo "REVOKE ALL PRIVILEGES ON *.* FROM '$user'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
 echo "GRANT SELECT ON *.* TO '$user'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
+echo "finished"
 
 if [ "$right" = "WRITE" ]; then
+echo "adding write access"
 echo "GRANT ALL PRIVILEGES ON *.* TO '$user'@'%' WITH OPTION; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
 fi
 
