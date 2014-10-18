@@ -203,9 +203,9 @@ downloadable by curl (which is used behind the scenes to do that).
 If it works in MySQL Workbench, it should work with this container.
 
 Nevertheless, if your are running into troubles you should start your container
-with the <code>-t</code> parameter of docker. This will forward the output of the container
+with the <code>-t</code> and <code>-i</code> parameter of docker. This will forward the output of the container
 to your console, which is likely to be helpful for debugging purposes.
 
 ```Shell
-docker run -t -p 3306:3306 -e url="http://www.ex.org/my/database.sql" mysqldb
+docker run -t -i -p 3306:3306 -e url="http://www.ex.org/my/database.sql" mysqldb
 ```
