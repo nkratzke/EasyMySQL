@@ -23,7 +23,7 @@ echo "finished"
 
 if [ "$right" = "WRITE" ]; then
 echo "adding write access"
-echo "GRANT ALL PRIVILEGES ON *.* TO '$user'@'%' WITH OPTION; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
+echo "GRANT ALL PRIVILEGES ON *.* TO '$user'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
 fi
 
 # And we restart the server to go operational
