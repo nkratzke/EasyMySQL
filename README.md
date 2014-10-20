@@ -38,7 +38,7 @@ for
 
 ## Usage ##
 
-To use this container you have to build an image first. This image provides a self-contained MySQL
+To use this container you have to build an image as a first step. This image provides a self-contained MySQL
 server. You can clone this repository or tell docker to do the repository handling
 behind the scenes for you (which is my preferred way in case of github provided
   Dockerfiles):
@@ -100,7 +100,7 @@ enter the following parameters when creating a new database connection:
 - __Hostname:__ IP address or DNS name of your docker host (when you are working with boot2docker its the ip you get via <code>boot2docker ip</code>)
 - __Username:__ *student* (you can change this, we will come to this later)
 - __Password:__ *secret* (you can change this, we will come to this later)
-- __Default Schema:__ *LVBsp* (you can change the database as well, we will come to this later)
+- __Default Schema:__ *LVBsp* (you can change the database as well, so stay tuned)
 
 To stop a container simply figure out its CONTAINER ID (via <code>docker ps</code> as shown above)
 and stop it like that:
@@ -133,7 +133,7 @@ docker run -d -p 3306:3306 -e url="http://www.example.org/my/database.sql" mysql
 
 ### Define user with <code>user</code> and <code>password</code>###
 
-You can create your own user with own password by using the <code>user</code> and
+You can create your own user/password combination by using the <code>user</code> and
 <code>password</code> parameter.
 By default the created MySQL user will get read access to all databases hosted by this container.
 
