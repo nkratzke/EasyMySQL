@@ -8,7 +8,11 @@ echo "Adding data into MySQL"
 file -bi /var/mysql/database.sql
 /usr/sbin/mysqld &
 sleep 5
-curl $url | mysql --default-character-set=utf8
+curl $url -o import.sql
+sed -ri.bak 's/-- Database: (.*?)/CREATE DATABASE \1/g' import.sql
+if grep -q "CREATE DATABASE" file.sql; then :; else sed -ri.bak 's/-- Table structure/CREATE DATABASE `database_1`\n-- Table Structure/g' import.sql; fi
+mysql --default-character-set=utf8 < import.sql
+rm import.sql
 mysqladmin shutdown
 echo "finished"
 
