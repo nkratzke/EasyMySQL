@@ -2,6 +2,12 @@
 
 [docker]: https://dev.mysql.com/downloads/workbench/
 
+<center>
+  Warning: This repository is not maintained any longer by me.
+  If you want to maintain this repository I would be glad to transfer the repository.
+  Just contact [me](email:nane.kratzke@fh-luebeck.de).
+</center>
+
 __A docker container to provide MySQL databases on the fly.__
 
 This Dockerfile is used to provide MySQL databases in a frictionless
