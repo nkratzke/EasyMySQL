@@ -2,11 +2,10 @@
 
 [docker]: https://dev.mysql.com/downloads/workbench/
 
-<center>
-  Warning: This repository is not maintained any longer by me.
-  If you want to maintain this repository I would be glad to transfer the repository.
-  Just contact [me](email:nane.kratzke@fh-luebeck.de).
-</center>
+
+    Warning: This repository is not maintained by me any longer.
+    If you want to maintain this repository, I would be glad to transfer the repository to your account.
+    Just send me a mail: nane.kratzke [at] fh-luebeck.de
 
 __A docker container to provide MySQL databases on the fly.__
 
